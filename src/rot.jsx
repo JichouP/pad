@@ -17,9 +17,9 @@ export default class Rot extends Component {
     PIXI.ticker.remove(this.animate);
   }
   animate(delta) {
-    this.setState( state => ({ state, deg: this.deg + delta }));
+    this.setState({ deg: this.deg + delta });
   }
   render() {
-    return <Sprite texture={this.bunny} />;
+    return <Sprite texture={this.bunny} rotation={this.state.deg} />;
   }
 }
