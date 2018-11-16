@@ -1,18 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Sprite, Stage } from 'react-pixi-fiber';
-import PIXI from 'pixi.js';
+import { Stage } from 'react-pixi-fiber';
 import Rot from './rot';
-
-// const Show = props => {
-//   return (
-//     <Sprite
-//       anchor={centerAnchor}
-//       texture={PIXI.Texture.fromImage(bunny)}
-//       {...props}
-//     />
-//   );
-// };
 
 class App extends React.Component<{}, {}> {
   constructor(props: any) {

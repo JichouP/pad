@@ -1,29 +1,41 @@
 import React, { Component } from 'react';
 import * as PIXI from 'pixi.js';
-import { Stage, Sprite } from 'react-pixi-fiber';
+import { Sprite } from 'react-pixi-fiber';
+import bunny from './res/bunny.png';
 
 export default class Rot extends Component<
   { x: number; y: number },
   { deg: number }
 > {
-  bunny: string;
-  centerAnchor: PIXI.Point;
+  centerAnchor: PIXI.ObservablePoint;
+  ticker: PIXI.ticker.Ticker;
+  bunny: PIXI.Texture;
   constructor(props: any) {
     super(props);
-    this.bunny = './res/bunny.png';
     this.state = { deg: 0 };
-    this.centerAnchor = new PIXI.Point(0.5, 0.5);
+    this.centerAnchor = new PIXI.ObservablePoint(() => {}, {}, 0.5, 0.5);
+    this.ticker = new PIXI.ticker.Ticker();
+    this.ticker.autoStart = true;
+    this.bunny = PIXI.Texture.fromImage(bunny);
   }
-  componentDidMount() {
-    PIXI.ticker.add(this.animate);
-  }
-  componentWillUnmount() {
-    PIXI.ticker.remove(this.animate);
-  }
-  animate(delta) {
-    this.setState({ deg: this.deg + delta });
-  }
+  componentDidMount = () => {
+    this.ticker.add(this.animate);
+  };
+  componentWillUnmount = () => {
+    this.ticker.remove(this.animate);
+  };
+  animate = (delta: number) => {
+    this.setState({ deg: this.state.deg + delta / 10 });
+  };
   render() {
-    return <Sprite texture={this.bunny} rotation={this.state.deg} />;
+    return (
+      <Sprite
+        x={this.props.x}
+        y={this.props.y}
+        texture={this.bunny}
+        rotation={this.state.deg}
+        anchor={this.centerAnchor}
+      />
+    );
   }
 }
