@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import * as PIXI from 'pixi.js';
 import { Stage, Sprite } from 'react-pixi-fiber';
-export default class Rot extends Component {
-  constructor(props) {
+
+export default class Rot extends Component<
+  { x: number; y: number },
+  { deg: number }
+> {
+  bunny: string;
+  centerAnchor: PIXI.Point;
+  constructor(props: any) {
     super(props);
     this.bunny = './res/bunny.png';
     this.state = { deg: 0 };
     this.centerAnchor = new PIXI.Point(0.5, 0.5);
-    
   }
   componentDidMount() {
     PIXI.ticker.add(this.animate);

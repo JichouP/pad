@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Sprite, Stage } from 'react-pixi-fiber';
-import * as PIXI from 'pixi.js';
+import PIXI from 'pixi.js';
 import Rot from './rot';
 
 // const Show = props => {
@@ -14,9 +14,9 @@ import Rot from './rot';
 //   );
 // };
 
-class App extends React.Component {
-  constructor() {
-    super();
+class App extends React.Component<{}, {}> {
+  constructor(props: any) {
+    super(props);
   }
   render() {
     return (
