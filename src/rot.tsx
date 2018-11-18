@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as PIXI from 'pixi.js';
 import { Sprite } from 'react-pixi-fiber';
-import bunny from './res/bunny.png';
+import bunny from '../res/bunny.png';
 
 export default class Rot extends Component<
   { x: number; y: number },
